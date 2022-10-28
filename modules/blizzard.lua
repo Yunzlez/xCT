@@ -36,40 +36,41 @@ end)
 local fsTitle, configButton
 x.UpdateBlizzardOptions = function() --[[ Nothing to see here, for now... ]] end
 
-InterfaceOptionsCombatPanel:HookScript('OnShow', function(self)
-  if not fsTitle then
-    -- Show Combat Options Title
-    fsTitle = self:CreateFontString(nil, "OVERLAY")
-    fsTitle:SetTextColor(1.00, 1.00, 1.00, 1.00)
-    fsTitle:SetFontObject(GameFontHighlightLeft)
-    fsTitle:SetText("|cff60A0FF(Now Controlled by |cffFFFF00xCT+|cff60A0FF)")
-    fsTitle:SetPoint("LEFT", InterfaceOptionsCombatPanelEnableFloatingCombatText, "RIGHT", 0, -16)
-  end
-
-  if not configButton then
-    -- Create a button to delete profiles
-    configButton = CreateFrame("Button", nil, self, "UIPanelButtonTemplate")
-    configButton:ClearAllPoints()
-    configButton:SetPoint("TOPLEFT", InterfaceOptionsCombatPanelEnableFloatingCombatText, "BOTTOMLEFT", 24, -16)
-    configButton:SetSize(160, 28)
-    configButton:SetText("Configure in xCT+")
-    configButton:Show()
-    configButton:SetScript("OnClick", function(self)
-      InterfaceOptionsFrame_OnHide()
-      HideUIPanel(GameMenuFrame)
-      x:ShowConfigTool("FloatingCombatText")
-    end)
-  end
-
-  if not InterfaceOptionsCombatPanel.xCTEnabled then
-    local oldText = InterfaceOptionsCombatPanelEnableFloatingCombatTextText:GetText()
-    InterfaceOptionsCombatPanelEnableFloatingCombatText:Disable()
-    InterfaceOptionsCombatPanel.xCTEnabled = true
-
-    InterfaceOptionsCombatPanelSpellAlertOpacitySlider:ClearAllPoints()
-    InterfaceOptionsCombatPanelSpellAlertOpacitySlider:SetPoint("TOPLEFT", configButton, "BOTTOMLEFT", 24, -32)
-  end
-end)
+-- TODO might be obsolete, as this panel no longer exists. There may be another panel that needs to be "replaced" like this
+--InterfaceOptionsCombatPanel:HookScript('OnShow', function(self)
+--  if not fsTitle then
+--    -- Show Combat Options Title
+--    fsTitle = self:CreateFontString(nil, "OVERLAY")
+--    fsTitle:SetTextColor(1.00, 1.00, 1.00, 1.00)
+--    fsTitle:SetFontObject(GameFontHighlightLeft)
+--    fsTitle:SetText("|cff60A0FF(Now Controlled by |cffFFFF00xCT+|cff60A0FF)")
+--    fsTitle:SetPoint("LEFT", InterfaceOptionsCombatPanelEnableFloatingCombatText, "RIGHT", 0, -16)
+--  end
+--
+--  if not configButton then
+--    -- Create a button to delete profiles
+--    configButton = CreateFrame("Button", nil, self, "UIPanelButtonTemplate")
+--    configButton:ClearAllPoints()
+--    configButton:SetPoint("TOPLEFT", InterfaceOptionsCombatPanelEnableFloatingCombatText, "BOTTOMLEFT", 24, -16)
+--    configButton:SetSize(160, 28)
+--    configButton:SetText("Configure in xCT+")
+--    configButton:Show()
+--    configButton:SetScript("OnClick", function(self)
+--      InterfaceOptionsFrame_OnHide()
+--      HideUIPanel(GameMenuFrame)
+--      x:ShowConfigTool("FloatingCombatText")
+--    end)
+--  end
+--
+--  if not InterfaceOptionsCombatPanel.xCTEnabled then
+--    local oldText = InterfaceOptionsCombatPanelEnableFloatingCombatTextText:GetText()
+--    InterfaceOptionsCombatPanelEnableFloatingCombatText:Disable()
+--    InterfaceOptionsCombatPanel.xCTEnabled = true
+--
+--    InterfaceOptionsCombatPanelSpellAlertOpacitySlider:ClearAllPoints()
+--    InterfaceOptionsCombatPanelSpellAlertOpacitySlider:SetPoint("TOPLEFT", configButton, "BOTTOMLEFT", 24, -32)
+--  end
+--end)
 
 function x:UpdateBlizzardFCT()
   if self.db.profile.blizzardFCT.enabled then
